@@ -46,7 +46,7 @@ export default function SearchBar({isForHeader}) {
             else setTextNumber(0);
         }, 2000);
     }
-  }, [textNumber])
+  }, [textNumber, searchText])
   const { push } = useRouter();
   return (
     <div className={`${(scrollY <= 350 && isForHeader && pathname === "/") ? "opacity-0" : "opacity-100" } transition-all flex flex-1 items-center justify-center ${isForHeader ? "z-[998]" : "z-[1200]" }`}>
@@ -86,7 +86,7 @@ export default function SearchBar({isForHeader}) {
             </div>
         </div>
         {inputFocus && 
-            <div className={`absolute bg-white border-x-[1px] border-b-[1px] rounded-b-[10px] ${(scrollY<350 && isForHeader && pathname === "/") ? "hidden" : ""}`}
+            <div className={`absolute bg-white border-x-[1px] border-b-[1px] rounded-b-[10px] ${(scrollY>350 && !isForHeader && pathname === "/") ? "hidden" : ""} ${(scrollY<350 && isForHeader && pathname === "/") ? "hidden" : ""}`}
                 style={{ width: `${inputW}px` }}>
                 {
                 suggestedList.map((val, ind) => {

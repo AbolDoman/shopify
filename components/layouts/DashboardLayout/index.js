@@ -22,7 +22,7 @@ export default function DashboardLayout({children}) {
           <SearchBar isForHeader={true} />
 
         <div className='flex justify-end items-center'>
-          <AutoAwesomeIcon onClick={() => setChatOpen(dispatch, !chatOpen)} fontSize='large' className='mx-4 cursor-pointer hover:bg-gray-300 rounded-full p-1 text-gray-500' />
+          {pathname !== "/" &&<AutoAwesomeIcon onClick={() => setChatOpen(dispatch, !chatOpen)} fontSize='large' className='mx-4 cursor-pointer hover:bg-gray-300 rounded-full p-1 text-gray-500' />}
           <Tooltip title={`${bookMarks.length} interested products`}>
             <FavoriteBorderIcon fontSize='large' className='cursor-pointer hover:bg-gray-300 rounded-full p-1 text-gray-500' />
           </Tooltip>

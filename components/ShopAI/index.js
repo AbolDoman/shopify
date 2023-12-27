@@ -40,11 +40,21 @@ export default function ShopAI() {
     setMessages(temp);
     localStorage.setItem("messages", JSON.stringify(temp));
     setInputValue("");
+    setTimeout(() => {
+      const element = document.getElementById("chatsContainer");
+      element.scrollTop = element.scrollHeight;
+    }, 100);
   }
   useEffect(()=>{
     let temp = localStorage.getItem("messages");
     if(!temp) return;
     setMessages(JSON.parse(temp));
+
+    setTimeout(() => {
+      const element = document.getElementById("chatsContainer");
+      element.scrollTop = element.scrollHeight;
+    }, 100);
+
   }, []);
   const reactionOnMessage = (id, react) => {
     const temp = [];
@@ -57,6 +67,7 @@ export default function ShopAI() {
     setMessages(temp);
     localStorage.setItem("messages", JSON.stringify(temp));
   }
+  
   return (
     <div className="h-[100%]">
       <div className="h-[10%] border-b-[2px] border-b-[#F2F4F5] flex items-center px-4">
@@ -66,7 +77,7 @@ export default function ShopAI() {
           <div><CloseIcon onClick={()=>setChatOpen(dispatch, false)} fontSize='large' className='hover:bg-[#F4F5F8] rounded-full p-2 cursor-pointer' /></div>
         </div>
       </div>
-      <div className="h-[80%] px-2 overflow-y-auto noScrollBar">
+      <div id="chatsContainer" className="h-[80%] px-2 overflow-y-auto noScrollBar">
         {messages.map((value, index) => {
           return(
             <div key={index}>
